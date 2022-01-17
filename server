@@ -1,0 +1,90 @@
+// import express from 'express'
+// import bodyParser from 'body-parser'
+// import { URLSearchParams } from 'url'
+
+// const app = express()
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
+
+// const MongoClient = require('mongodb').MongoClient
+// var db: any
+// const cors = require('cors')
+// app.use(cors())
+
+// MongoClient.connect(
+//   'mongodb+srv://psysever:1234@cluster0.gcrfw.mongodb.net/chatApp?retryWrites=true&w=majority',
+//   (err: any, client: any) => {
+//     if (err) return console.log(err)
+//     db = client.db('chatApp')
+//     db.collection('counter').findOne(
+//       { name: '게시물갯수' },
+//       (err: any, result: any) => {
+//         console.log(result.totalPost)
+//         const totalCount = result.totalPost
+//         db.collection('counter').updateOne(
+//           { name: '게시물갯수' },
+//           { $inc: { totalPost: 1 } },
+//           (err: any, result: any) => {},
+//         )
+//         app.post('/add', (req: any, res: any) => {
+//           db.collection('post').insertOne(
+//             {
+//               title: req.body.title,
+//               contents: req.body.contents,
+//               _id: totalCount + 1,
+//             },
+//             (err: any, result: any) => {
+//               console.log(req.body)
+//               res.send({ message: 'ok' })
+//             },
+//           )
+//         })
+//         //update는 operator 형식으로 써야함 $set(변경) $inc(증가) $min(기존값보다 적을 때만 변경) $rename (key 값 이름변경)
+//         //updateOne({},{},()=>{}) 하나를 수정할 수 있다.updateMany() 한번에 많은걸 수정하고 싶다
+//       },
+//     ) //  .find()모든 데이터를 찾는다. .findOne 원하는데이터 하나만 찾는다
+//     //--create
+
+//     //---get
+//     app.get('/list', (req, res) => {
+//       db.collection('post')
+//         .find()
+//         .toArray(function (error: any, result: any) {
+//           //.find.toArray DB에있는 자료들을 다 보여준다.
+
+//           res.send(result)
+//         })
+//     })
+//     //--delete
+//     // app.delete('/delete', (req: any , res: any) => {
+//     //   req.body._id = parseInt(req.body._id) //parseInt string => int
+//     //   db.collection('post').deleteOne(req.body._id, (err: any, result: any) => {
+//     //     console.log('삭제완료')
+//     //     res.status(200).send({message:
+//     //     "success"}); //200 이면 일반적으로 성공 400이면 고객잘못으로 요청실패 500에러 서버문제로 요청실패
+//     //   }) //원하는 게시물 삭제
+//     // })
+//     //--edit
+//     // app.get('/edit/:id', (req: any, res: any) => {
+//     //   db.collection('post').findOne(
+//     //     { _id: parseInt(req.params.id) },
+//     //     (err: any, result: any) => {
+//     //       res.render('edit.ejs', { post: result })
+//     //     },
+//     //   )
+//     //   app.put('/edit', (req: any, res: any) => {
+//     //     db.collection('post').updateOne(
+//     //       { _id: parseInt(res.body.id) },
+//     //       { $set: { title: res.body.title, date: res.body.date } },
+//     //       (err: any, result: any) => {},
+//     //     )
+//     //   }) //updatateOne(어떤게시물수정할건지, 수정값, 콜백함수) $set(변경) 업데이트해주세요 없으면 추가해주세요.
+//     //   console.log('수정완료')
+//     //   res.redirect('/list') //응답은 꼭필요하다.
+//     // })
+
+//     app.listen(8080, function () {
+//       console.log(`🚀 Server: http://localhost:8080`)
+//     })
+//   },
+// )
