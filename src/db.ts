@@ -1,14 +1,9 @@
-import mongoose, { ConnectOptions } from 'mongoose'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+dotenv.config()
+const MONGO_URL: any = process.env.MONGO_URL
 
-mongoose.connect(
-  'psysever:1234@localhost:27017',
-
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  } as ConnectOptions,
-)
+mongoose.connect(MONGO_URL)
 
 const db = mongoose.connection
 
